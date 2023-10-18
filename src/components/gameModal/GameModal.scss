@@ -1,0 +1,23 @@
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+
+  button {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 144px;
+    height: 144px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
