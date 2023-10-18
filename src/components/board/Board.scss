@@ -3,11 +3,42 @@
   padding: 1rem;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-gap: 1rem;
 
-  .card {
-    width: 155px;
-    height: 155px;
+  &--4x4 {
+    grid-template-columns: repeat(4, 1fr);
+
+    .card {
+      width: 155px;
+      height: 155px;
+    }
+  }
+
+  &--6x4 {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+    .card {
+      width: 130px;
+      height: 130px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  &--6x5 {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+
+    .card {
+      width: 125px;
+      height: 125px;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 }
