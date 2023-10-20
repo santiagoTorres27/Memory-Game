@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Home.scss";
 import GameModal from "../../components/gameModal/GameModal";
 import DifficultyModal from "../../components/difficultyModal/DifficultyModal";
-import { GameContext } from "../../context/GameContext";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {

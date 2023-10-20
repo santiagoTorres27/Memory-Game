@@ -1,100 +1,94 @@
-const cardImages4x4 = [
+const cardImages = [
   {
     id: 1,
-    src: "/img/card_aragorn.svg",
+    src: "/img/lotr/card_aragorn.png",
     name: "Aragorn",
     matched: false,
   },
   {
     id: 2,
-    src: "/img/card_boromir.svg",
+    src: "/img/lotr/card_bilbo.png",
     name: "Boromir",
     matched: false,
   },
   {
     id: 3,
-    src: "/img/card_frodo.svg",
+    src: "/img/lotr/card_boromir.png",
     name: "Frodo",
     matched: false,
   },
   {
     id: 4,
-    src: "/img/card_gandalf.svg",
+    src: "/img/lotr/card_frodo.png",
     name: "Gandalf",
     matched: false,
   },
   {
     id: 5,
-    src: "/img/card_gimli.svg",
+    src: "/img/lotr/card_galadriel.png",
     name: "Gimli",
     matched: false,
   },
   {
     id: 6,
-    src: "/img/card_gollum.svg",
+    src: "/img/lotr/card_gandalf.png",
     name: "Gollum",
     matched: false,
   },
   {
     id: 7,
-    src: "/img/card_legolas.svg",
+    src: "/img/lotr/card_gimli.png",
     name: "Legolas",
     matched: false,
   },
   {
     id: 8,
-    src: "/img/card_sauron.svg",
+    src: "/img/lotr/card_gollum.png",
     name: "Sauron",
     matched: false,
   },
-  /*  {
+  {
     id: 9,
-    src: "../public/img/card_aragorn.svg",
+    src: "/img/lotr/card_legolas.png",
     name: "Aragorn",
     matched: false,
   },
   {
     id: 10,
-    src: "../public/img/card_boromir.svg",
+    src: "/img/lotr/card_meriadoc.png",
     name: "Boromir",
     matched: false,
   },
   {
     id: 11,
-    src: "../public/img/card_frodo.svg",
+    src: "/img/lotr/card_peregrin.png",
     name: "Frodo",
     matched: false,
   },
   {
     id: 12,
-    src: "../public/img/card_gandalf.svg",
+    src: "/img/lotr/card_ring.png",
     name: "Gandalf",
     matched: false,
   },
   {
     id: 13,
-    src: "../public/img/card_gimli.svg",
+    src: "/img/lotr/card_sam.png",
     name: "Gimli",
     matched: false,
   },
   {
     id: 14,
-    src: "../public/img/card_gollum.svg",
+    src: "/img/lotr/card_saruman.png",
     name: "Gollum",
     matched: false,
   },
   {
     id: 15,
-    src: "../public/img/card_legolas.svg",
+    src: "/img/lotr/card_sauron.png",
     name: "Legolas",
     matched: false,
   },
-  {
-    id: 16,
-    src: "../public/img/card_sauron.svg",
-    name: "Sauron",
-    matched: false,
-  }, */
 ];
 
-export { cardImages4x4 };
+export { cardImages };

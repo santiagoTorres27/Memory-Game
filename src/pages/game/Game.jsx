@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Game.scss";
 import Board from "../../components/board/Board";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -10,14 +10,17 @@ const Game = () => {
   const theme = queryParams.get("theme");
   const difficulty = queryParams.get("difficulty");
 
-  useEffect(() => {
-    /* console.log(theme, difficulty); */
-  }, []);
+  const [tries, setTries] = useState(0);
 
   return (
     <div>
-      <BoardHeader />
-      <Board theme={theme} difficulty={difficulty} />
+      <BoardHeader tries={tries} onSetTries={setTries} />
+      <Board
+        theme={theme}
+        difficulty={difficulty}
+        setTries={setTries}
+        tries={tries}
+      />
     </div>
   );
 };
