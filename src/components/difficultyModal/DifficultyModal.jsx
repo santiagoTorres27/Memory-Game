@@ -3,7 +3,7 @@ import Modal from "../modal/Modal";
 import { GameContext } from "../../context/GameContext";
 import "./DifficultyModal.scss";
 
-const DifficultyModal = ({ closeModal }) => {
+const DifficultyModal = ({ closeModal, onSelectDifficulty }) => {
   const { setDifficulty } = useContext(GameContext);
 
   return (
@@ -13,7 +13,7 @@ const DifficultyModal = ({ closeModal }) => {
       <div className="buttons-difficulty">
         <button
           onClick={(e) => {
-            setDifficulty("easy");
+            onSelectDifficulty("easy");
             closeModal();
           }}
         >
@@ -21,7 +21,7 @@ const DifficultyModal = ({ closeModal }) => {
         </button>
         <button
           onClick={(e) => {
-            setDifficulty("medium");
+            onSelectDifficulty("medium");
             closeModal();
           }}
         >
@@ -29,7 +29,7 @@ const DifficultyModal = ({ closeModal }) => {
         </button>
         <button
           onClick={(e) => {
-            setDifficulty("hard");
+            onSelectDifficulty("hard");
             closeModal();
           }}
         >

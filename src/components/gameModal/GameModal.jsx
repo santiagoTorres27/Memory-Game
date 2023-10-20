@@ -3,9 +3,7 @@ import Modal from "../modal/Modal";
 import { GameContext } from "../../context/GameContext";
 import "./GameModal.scss";
 
-const GameModal = ({ closeModal }) => {
-  const { setGameTheme } = useContext(GameContext);
-
+const GameModal = ({ closeModal, onSelectGameTheme }) => {
   return (
     <Modal onCloseModal={closeModal}>
       <span>Select the game theme</span>
@@ -13,7 +11,7 @@ const GameModal = ({ closeModal }) => {
       <div className="buttons">
         <button
           onClick={(e) => {
-            setGameTheme("lotr");
+            onSelectGameTheme("The Lord of the Rings");
             closeModal();
           }}
         >
@@ -22,7 +20,7 @@ const GameModal = ({ closeModal }) => {
 
         <button
           onClick={(e) => {
-            setGameTheme("sw");
+            onSelectGameTheme("Star Wars");
             closeModal();
           }}
         >

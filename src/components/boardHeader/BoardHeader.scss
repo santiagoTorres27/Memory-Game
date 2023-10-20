@@ -1,0 +1,48 @@
+.game-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  &__tries,
+  &__reset {
+    width: 99px;
+    height: 83px;
+    flex-shrink: 0;
+    background-color: #ef433b;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__tries {
+    color: #fff;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+  }
+
+  &__timer {
+    width: 122px;
+    height: 122px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  &__reset {
+    cursor: pointer;
+  }
+}

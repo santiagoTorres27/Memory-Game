@@ -8,35 +8,9 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
   const [isDifficultyModalOpen, setIsDifficultyModalOpen] = useState(false);
-  const [gameSelected, setGameSelected] = useState("");
-  const [difficultySelected, setDifficultySelected] = useState("");
+  const [gameSelected, setGameSelected] = useState("The Lord of the Rings");
+  const [difficultySelected, setDifficultySelected] = useState("easy");
   const navigate = useNavigate();
-
-  const { gameTheme, setGameTheme, difficulty, setDifficulty } =
-    useContext(GameContext);
-
-  useEffect(() => {
-    switch (gameTheme) {
-      case "lotr":
-        setGameSelected("The lord of the rings");
-        break;
-      case "sw":
-        setGameSelected("Star wars");
-        break;
-    }
-
-    switch (difficulty) {
-      case "easy":
-        setDifficultySelected("Easy");
-        break;
-      case "medium":
-        setDifficultySelected("Medium");
-        break;
-      case "hard":
-        setDifficultySelected("Hard");
-        break;
-    }
-  }, [gameTheme, difficulty]);
 
   const openGameThemeModal = () => {
     setIsGameModalOpen(!isGameModalOpen);
@@ -46,13 +20,35 @@ const Home = () => {
     setIsDifficultyModalOpen(!isDifficultyModalOpen);
   };
 
+  const selectGameTheme = (option) => {
+    console.log(option);
+    setGameSelected(option);
+  };
+
+  const selectDifficulty = (option) => {
+    console.log(option);
+    setDifficultySelected(option);
+  };
+
+  const startGame = () => {
+    navigate(`/game?theme=${gameSelected}&difficulty=${difficultySelected}`);
+  };
+
   return (
     <div className="home">
       {/* Modal */}
-      {isGameModalOpen && <GameModal closeModal={openGameThemeModal} />}
+      {isGameModalOpen && (
+        <GameModal
+          closeModal={openGameThemeModal}
+          onSelectGameTheme={selectGameTheme}
+        />
+      )}
 
       {isDifficultyModalOpen && (
-        <DifficultyModal closeModal={openDifficultyModal} />
+        <DifficultyModal
+          closeModal={openDifficultyModal}
+          onSelectDifficulty={selectDifficulty}
+        />
       )}
 
       {/* Home layout */}
@@ -61,7 +57,7 @@ const Home = () => {
 
         <img
           src={
-            gameTheme === "lotr"
+            gameSelected === "The Lord of the Rings"
               ? "./public/img/lotr.svg"
               : "./public/img/sw.svg"
           }
@@ -80,13 +76,11 @@ const Home = () => {
 
         <button
           className={
-            gameTheme === "lotr"
+            gameSelected === "The Lord of the Rings"
               ? "btn btn__primary btn__primary--lotr"
               : "btn btn__primary btn__primary--sw"
           }
-          onClick={(e) => {
-            navigate("/game");
-          }}
+          onClick={startGame}
         >
           Start game
         </button>

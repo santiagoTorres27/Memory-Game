@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Game.scss";
 import Board from "../../components/board/Board";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import BoardHeader from "../../components/boardHeader/BoardHeader";
 
 const Game = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const theme = queryParams.get("theme");
+  const difficulty = queryParams.get("difficulty");
+
+  useEffect(() => {
+    /* console.log(theme, difficulty); */
+  }, []);
 
   return (
     <div>
-      <div className="game-info">
-        <div className="game-info__tries">0</div>
-        <div className="game-info__timer">60</div>
-        <div className="game-info__reset" onClick={(e) => navigate("/")}>
-          <img src="./public/img/reset_icon.svg" alt="" />
-        </div>
-      </div>
-      <Board />
+      <BoardHeader />
+      <Board theme={theme} difficulty={difficulty} />
     </div>
   );
 };
