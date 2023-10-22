@@ -4,8 +4,9 @@ import { cardImages } from "../../../data/Cards";
 import Card from "../card/Card";
 import FinishedGameModal from "../finishedGameModal/FinishedGameModal";
 
-const Board = ({ difficulty, setTries, tries }) => {
+const Board = ({ difficulty, onBackToHome }) => {
   const [timeOfGame] = useState(60);
+  const [tries, setTries] = useState(0);
   const [boardStyle, setBoardStyle] = useState("");
   const [cards, setCards] = useState(cardImages);
   const [disabled, setDisabled] = useState(false);
@@ -20,6 +21,7 @@ const Board = ({ difficulty, setTries, tries }) => {
   let numberOfCards = 0;
   let myCards = [];
 
+  // - Reset timer
   const resetTimer = () => {
     setIsTimeRunning(true);
     setTime(timeOfGame);
@@ -143,13 +145,23 @@ const Board = ({ difficulty, setTries, tries }) => {
     <div>
       <div className="game-info">
         {!isTimeRunning && (
-          <FinishedGameModal isVictory={isVictory} onReset={reset} />
+          <FinishedGameModal
+            isVictory={isVictory}
+            onReset={reset}
+            tries={tries}
+            time={time}
+          />
         )}
 
         <div className="game-info__tries">{tries}</div>
         <div className="game-info__timer">{time}</div>
-        <div className="game-info__reset" onClick={reset}>
-          <img src="/img/reset_icon.svg" alt="" />
+        <div className="game-info__reset-game">
+          <div className="game-info__reset" onClick={reset}>
+            <img src="/img/reset_icon.svg" alt="" />
+          </div>
+          <div className="game-info__back" onClick={onBackToHome}>
+            <img src="/img/exit.png" alt="" />
+          </div>
         </div>
       </div>
 

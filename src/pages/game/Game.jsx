@@ -10,17 +10,15 @@ const Game = () => {
   const theme = queryParams.get("theme");
   const difficulty = queryParams.get("difficulty");
 
-  const [tries, setTries] = useState(0);
+  const navigate = useNavigate("");
+  const backToHome = () => {
+    navigate("/");
+  };
 
   return (
     <div>
       {/* <BoardHeader tries={tries} onSetTries={setTries} /> */}
-      <Board
-        theme={theme}
-        difficulty={difficulty}
-        setTries={setTries}
-        tries={tries}
-      />
+      <Board theme={theme} difficulty={difficulty} onBackToHome={backToHome} />
     </div>
   );
 };
