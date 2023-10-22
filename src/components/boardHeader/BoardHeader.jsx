@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./BoardHeader.scss";
+import { GameContext } from "../../context/GameContext";
+import FinishedGameModal from "../finishedGameModal/FinishedGameModal";
 
 const BoardHeader = ({ tries, onSetTries }) => {
   const [time, setTime] = useState(60);
   const [isTimeRunning, setIsTimeRunning] = useState(true);
+  const { isVictory } = useContext(GameContext);
   let intervalId;
 
   useEffect(() => {
@@ -14,9 +17,15 @@ const BoardHeader = ({ tries, onSetTries }) => {
     return () => clearInterval(intervalId);
   }, [time, isTimeRunning]);
 
+  useEffect(() => {
+    console.log("Probando: " + isVictory);
+    if (isVictory) {
+      clearInterval(intervalId);
+    }
+  }, [isVictory]);
+
   const checkFinishTime = () => {
     if (time === 0) {
-      alert("Se ha acabado el tiempo");
       stopGame();
     }
   };
@@ -27,6 +36,7 @@ const BoardHeader = ({ tries, onSetTries }) => {
   };
 
   const resetGame = () => {
+    console.log("holaaaaaaa");
     setIsTimeRunning(true);
     setTime(60);
     onSetTries(0);
@@ -34,10 +44,11 @@ const BoardHeader = ({ tries, onSetTries }) => {
 
   return (
     <div className="game-info">
+      {!isTimeRunning && <FinishedGameModal />}
       <div className="game-info__tries">{tries}</div>
       <div className="game-info__timer">{time}</div>
       <div className="game-info__reset" onClick={resetGame}>
-        <img src="./public/img/reset_icon.svg" alt="" />
+        <img src="/img/reset_icon.svg" alt="" />
       </div>
     </div>
   );

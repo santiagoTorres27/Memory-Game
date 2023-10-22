@@ -2,14 +2,11 @@ import { createContext, useState } from "react";
 
 export const GameContext = createContext();
 
-export const GameThemeProvider = ({ children }) => {
-  const [gameTheme, setGameTheme] = useState("lotr");
-  const [difficulty, setDifficulty] = useState("easy");
+export const GameProvider = ({ children }) => {
+  const [isVictory, setIsVictory] = useState(false);
 
   return (
-    <GameContext.Provider
-      value={{ gameTheme, setGameTheme, difficulty, setDifficulty }}
-    >
+    <GameContext.Provider value={{ isVictory, setIsVictory }}>
       {children}
     </GameContext.Provider>
   );

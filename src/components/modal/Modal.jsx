@@ -1,13 +1,15 @@
 import React from "react";
 import "./Modal.scss";
 
-const Modal = ({ children, onCloseModal }) => {
+const Modal = ({ children, onCloseModal, disabledClick }) => {
   return (
     <div
       className="modal__background"
       onClick={(e) => {
-        if (e.target.classList.value === "modal__background") {
-          onCloseModal();
+        if (!disabledClick) {
+          if (e.target.classList.value === "modal__background") {
+            onCloseModal();
+          }
         }
       }}
     >

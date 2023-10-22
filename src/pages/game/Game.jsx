@@ -14,7 +14,7 @@ const Game = () => {
 
   return (
     <div>
-      <BoardHeader tries={tries} onSetTries={setTries} />
+      {/* <BoardHeader tries={tries} onSetTries={setTries} /> */}
       <Board
         theme={theme}
         difficulty={difficulty}

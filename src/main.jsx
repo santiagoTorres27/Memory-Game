@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.scss";
-import { GameThemeProvider } from "./context/GameContext.jsx";
+import { GameProvider } from "./context/GameContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <GameThemeProvider>
+    <GameProvider>
       <App />
-    </GameThemeProvider>
+    </GameProvider>
   </React.StrictMode>
 );

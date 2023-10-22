@@ -57,8 +57,8 @@ const Home = () => {
         <img
           src={
             gameSelected === "The Lord of the Rings"
-              ? "./public/img/lotr.svg"
-              : "./public/img/sw.svg"
+              ? "/img/lotr.svg"
+              : "/img/sw.svg"
           }
           alt="Lord of the Rings"
         />

@@ -15,7 +15,7 @@ const GameModal = ({ closeModal, onSelectGameTheme }) => {
             closeModal();
           }}
         >
-          <img src="./public/img/lotr_logo.svg" alt="" />
+          <img src="/img/lotr_logo.svg" alt="" />
         </button>
 
         <button
@@ -24,7 +24,7 @@ const GameModal = ({ closeModal, onSelectGameTheme }) => {
             closeModal();
           }}
         >
-          <img src="./public/img/sw_logo.svg" alt="" />
+          <img src="/img/sw_logo.svg" alt="" />
         </button>
       </div>
     </Modal>

@@ -1,6 +1,11 @@
 .card {
   position: relative;
   cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 .card img {
   width: 100%;
@@ -9,6 +14,7 @@
 }
 
 .card .front {
+  /* Modificar aqui para pruebas */
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
   position: absolute;
