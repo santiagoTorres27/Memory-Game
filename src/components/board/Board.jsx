@@ -143,16 +143,16 @@ const Board = ({ difficulty, onBackToHome }) => {
 
   return (
     <div>
-      <div className="game-info">
-        {!isTimeRunning && (
-          <FinishedGameModal
-            isVictory={isVictory}
-            onReset={reset}
-            tries={tries}
-            time={time}
-          />
-        )}
+      {/*       {!isTimeRunning && (
+        <FinishedGameModal
+          isVictory={isVictory}
+          onReset={reset}
+          tries={tries}
+          time={time}
+        />
+      )} */}
 
+      <div className="game-info">
         <div className="game-info__tries">{tries}</div>
         <div className="game-info__timer">{time}</div>
         <div className="game-info__reset-game">
@@ -160,7 +160,7 @@ const Board = ({ difficulty, onBackToHome }) => {
             <img src="/img/reset_icon.svg" alt="" />
           </div>
           <div className="game-info__back" onClick={onBackToHome}>
-            <img src="/img/exit.png" alt="" />
+            <img src="/img/exit.svg" alt="" />
           </div>
         </div>
       </div>

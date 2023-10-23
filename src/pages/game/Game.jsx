@@ -16,7 +16,7 @@ const Game = () => {
   };
 
   return (
-    <div>
+    <div className="game">
       {/* <BoardHeader tries={tries} onSetTries={setTries} /> */}
       <Board theme={theme} difficulty={difficulty} onBackToHome={backToHome} />
     </div>
