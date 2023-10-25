@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Board.scss";
-import { cardImagesLotr, cardImagesSw } from "../../../data/Cards";
 import Card from "../card/Card";
 import FinishedGameModal from "../finishedGameModal/FinishedGameModal";
+import { cardImagesLotr, cardImagesSw } from "../../../data/Cards";
 
 const Board = ({ theme, difficulty, onBackToHome }) => {
   const [timeOfGame] = useState(60);
   const [tries, setTries] = useState(0);
   const [boardStyle, setBoardStyle] = useState("");
-  const [cards, setCards] = useState(cardImagesSw);
   const [disabled, setDisabled] = useState(false);
   const [time, setTime] = useState(timeOfGame);
   const [isTimeRunning, setIsTimeRunning] = useState(true);
@@ -17,48 +16,36 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
     choice1: null,
     choice2: null,
   });
+  const [cards, setCards] = useState(cardImagesSw);
+  const initialCardsState = () =>
+    theme === "Star Wars" ? cardImagesSw : cardImagesLotr;
+  const [originalCards] = useState(initialCardsState);
   let intervalId;
-  let numberOfCards = 0;
-  let myCards = [];
 
-  // - Reset timer
+  // Reset timer
   const resetTimer = () => {
     setIsTimeRunning(true);
     setTime(timeOfGame);
     setTries(0);
   };
 
-  const getDifficulty = () => {
-    if (difficulty === "medium") {
-      setBoardStyle("board--6x4");
-      numberOfCards = 12;
-    } else if (difficulty == "hard") {
-      setBoardStyle("board--6x5");
-      numberOfCards = 15;
-    } else {
-      setBoardStyle("board--4x4");
-      numberOfCards = 8;
-    }
-  };
-
-  // Suffle cards
+  // Shuffle cards
   const shuffleCards = () => {
-    getDifficulty();
+    let duplicatedCards = [];
 
-    if (numberOfCards === 8) {
-      myCards = cards.slice(0, 8);
-    } else if (numberOfCards === 12) {
-      myCards = cards.slice(0, 12);
-    } else if (numberOfCards === 15) {
-      myCards = cards.slice(0, 15);
+    if (difficulty === "easy") {
+      duplicatedCards = originalCards.slice(0, 8);
+    } else if (difficulty === "medium") {
+      duplicatedCards = originalCards.slice(0, 12);
+    } else {
+      duplicatedCards = originalCards.slice(0, 15);
     }
 
-    const shuffledCards = [...myCards, ...myCards]
+    const shuffledCards = [...duplicatedCards, ...duplicatedCards]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
-
-    /*     reset(); */
     setCards(shuffledCards);
+    setIsTimeRunning(true);
   };
 
   const disableCardSelection = () => {
@@ -84,17 +71,29 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
     }
   };
 
+  // Reset
   const reset = () => {
     disableCardSelection();
-    getDifficulty();
+    setCards(null);
     resetTimer();
     shuffleCards();
     setIsVictory(false);
   };
 
+  // Initial useEffect
   useEffect(() => {
+    if (difficulty === "medium") {
+      setBoardStyle("board--6x4");
+      setCards((prev) => prev.slice(0, 12));
+    } else if (difficulty == "hard") {
+      setBoardStyle("board--6x5");
+      setCards((prev) => prev.slice(0, 15));
+    } else {
+      setBoardStyle("board--4x4");
+      setCards((prev) => prev.slice(0, 8));
+    }
+
     shuffleCards();
-    getDifficulty();
   }, [difficulty]);
 
   // compare 2 selected cards
@@ -120,6 +119,7 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
     }
   }, [choices]);
 
+  // check time
   useEffect(() => {
     if (isTimeRunning) {
       intervalId = setInterval(() => setTime(time - 1), 1000);
@@ -131,7 +131,7 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
     return () => clearInterval(intervalId);
   }, [time, isTimeRunning]);
 
-  // compare win
+  // check win
   useEffect(() => {
     const result = cards.every((item) => item.matched === true);
     if (result === true) {
@@ -143,14 +143,15 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
 
   return (
     <div>
-      {/*       {!isTimeRunning && (
+      {!isTimeRunning && (
         <FinishedGameModal
           isVictory={isVictory}
           onReset={reset}
           tries={tries}
           time={time}
+          theme={theme}
         />
-      )} */}
+      )}
 
       <div className="game-info">
         <div className="game-info__tries">{tries}</div>

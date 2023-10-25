@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Game.scss";
 import Board from "../../components/board/Board";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,10 +14,8 @@ const Game = () => {
   const backToHome = () => {
     navigate("/");
   };
-
   return (
     <div className="game">
-      {/* <BoardHeader tries={tries} onSetTries={setTries} /> */}
       <Board theme={theme} difficulty={difficulty} onBackToHome={backToHome} />
     </div>
   );

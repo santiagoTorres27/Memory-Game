@@ -16,9 +16,9 @@
 
 .card .front {
   /* Modificar aqui para pruebas */
-  transform: rotateY(90deg);
+  /*   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
-  position: absolute;
+  position: absolute; */
 }
 .flipped .front {
   transform: rotateY(0deg);

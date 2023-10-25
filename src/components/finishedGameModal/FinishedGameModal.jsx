@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "../modal/Modal";
 import { useNavigate } from "react-router-dom";
+import "./FinishedGameModal.scss";
 
-const FinishedGameModal = ({ isVictory, onReset, time, tries }) => {
+const FinishedGameModal = ({ isVictory, onReset, time, tries, theme }) => {
   const navigate = useNavigate();
+  const [victoryImg, setVictoryImg] = useState(null);
+  const [defeatImg, setDefeatImg] = useState(null);
 
-  const handleReset = () => {
+  const handleReset = (e) => {
+    e.preventDefault();
     onReset();
   };
 
@@ -13,18 +17,63 @@ const FinishedGameModal = ({ isVictory, onReset, time, tries }) => {
     navigate("/");
   };
 
+  useEffect(() => {
+    if (theme === "Star Wars") {
+      setVictoryImg("/img/sw_victory.png");
+      setDefeatImg("/img/sw_defeat.png");
+    } else {
+      setVictoryImg("/img/lotr_victory.png");
+      setDefeatImg("/img/lotr_defeat.png");
+    }
+  }, []);
+
+  if (isVictory) {
+    return (
+      <Modal disabledClick={true}>
+        <div className="finished-game">
+          <div className="finished-game__victory-img">
+            <img src={victoryImg} alt="Victory" />
+          </div>
+          <p className="finished-game__title">Well done!</p>
+          <p className="finished-game__message">
+            You did it in {tries} attempts and {60 - time} seconds
+          </p>
+
+          <div className="finished-game__buttons">
+            <button className="finished-game__btn" onClick={handleReset}>
+              <img src="/img/reset_icon.svg" alt="" />
+              New game
+            </button>
+            <button className="finished-game__btn" onClick={handleBackToHome}>
+              <img src="/img/exit.svg" alt="" />
+              Home
+            </button>
+          </div>
+        </div>
+      </Modal>
+    );
+  }
+
   return (
     <Modal disabledClick={true}>
-      {isVictory && (
-        <>
-          <h1>Genial!!</h1>
-          <p>Lo has conseguido en {60 - time} segundos</p>
-          <p>En {tries} intentos</p>
-        </>
-      )}
-      {!isVictory && <h1>Tiempo agotado :(</h1>}
-      <button onClick={handleReset}>New game</button>
-      <button onClick={handleBackToHome}>Back to home</button>
+      <div className="finished-game">
+        <div className="finished-game__victory-img">
+          <img src={defeatImg} alt="Victory" />
+        </div>
+        <p className="finished-game__title">OH NO!</p>
+        <p className="finished-game__message">Time is up</p>
+
+        <div className="finished-game__buttons">
+          <button className="finished-game__btn" onClick={handleReset}>
+            <img src="/img/reset_icon.svg" alt="" />
+            New game
+          </button>
+          <button className="finished-game__btn" onClick={handleBackToHome}>
+            <img src="/img/exit.svg" alt="" />
+            Home
+          </button>
+        </div>
+      </div>
     </Modal>
   );
 };
