@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.scss";
 
-const Card = ({ card, onSelectCard, flipped, disabled }) => {
+const Card = ({ theme, card, onSelectCard, flipped, disabled }) => {
   const handleClick = () => {
     if (!disabled) {
       onSelectCard(card);
@@ -14,7 +14,11 @@ const Card = ({ card, onSelectCard, flipped, disabled }) => {
         <img className="front" alt="" src={card.src} />
         <img
           className="back"
-          src="/img/lotr_back_card.png"
+          src={
+            theme === "Star Wars"
+              ? "/img/sw_back_card.png"
+              : "/img/lotr_back_card.png"
+          }
           alt=""
           onClick={handleClick}
         />

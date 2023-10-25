@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Board.scss";
-import { cardImages } from "../../../data/Cards";
+import { cardImagesLotr, cardImagesSw } from "../../../data/Cards";
 import Card from "../card/Card";
 import FinishedGameModal from "../finishedGameModal/FinishedGameModal";
 
-const Board = ({ difficulty, onBackToHome }) => {
+const Board = ({ theme, difficulty, onBackToHome }) => {
   const [timeOfGame] = useState(60);
   const [tries, setTries] = useState(0);
   const [boardStyle, setBoardStyle] = useState("");
-  const [cards, setCards] = useState(cardImages);
+  const [cards, setCards] = useState(cardImagesSw);
   const [disabled, setDisabled] = useState(false);
   const [time, setTime] = useState(timeOfGame);
   const [isTimeRunning, setIsTimeRunning] = useState(true);
@@ -46,11 +46,11 @@ const Board = ({ difficulty, onBackToHome }) => {
     getDifficulty();
 
     if (numberOfCards === 8) {
-      myCards = cardImages.slice(0, 8);
+      myCards = cards.slice(0, 8);
     } else if (numberOfCards === 12) {
-      myCards = cardImages.slice(0, 12);
+      myCards = cards.slice(0, 12);
     } else if (numberOfCards === 15) {
-      myCards = cardImages.slice(0, 15);
+      myCards = cards.slice(0, 15);
     }
 
     const shuffledCards = [...myCards, ...myCards]
@@ -169,6 +169,7 @@ const Board = ({ difficulty, onBackToHome }) => {
         {cards &&
           cards.map((card) => (
             <Card
+              theme={theme}
               key={card.id}
               card={card}
               onSelectCard={selectCard}
