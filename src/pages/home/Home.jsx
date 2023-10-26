@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import GameModal from "../../components/gameModal/GameModal";
 import DifficultyModal from "../../components/difficultyModal/DifficultyModal";
 import { useNavigate } from "react-router-dom";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const Home = () => {
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
@@ -33,6 +35,10 @@ const Home = () => {
     navigate(`/game?theme=${gameSelected}&difficulty=${difficultySelected}`);
   };
 
+  useEffect(() => {
+    Aos.init({});
+  }, []);
+
   return (
     <div className="home">
       {/* Modal */}
@@ -52,9 +58,19 @@ const Home = () => {
 
       {/* Home layout */}
       <div className="home__container">
-        <h1>MEMORY GAME</h1>
+        <h1
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-easing="ease-in-out"
+        >
+          MEMORY GAME
+        </h1>
 
         <img
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="300"
+          data-aos-easing="ease"
           src={
             gameSelected === "The Lord of the Rings"
               ? "/img/lotr.svg"
@@ -63,17 +79,35 @@ const Home = () => {
           alt="Lord of the Rings"
         />
 
-        <button className="btn" onClick={openGameThemeModal}>
+        <button
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="400"
+          data-aos-easing="ease"
+          className="btn"
+          onClick={openGameThemeModal}
+        >
           <span>{gameSelected}</span>
           <span>Tap here to change game theme</span>
         </button>
 
-        <button className="btn" onClick={openDifficultyModal}>
+        <button
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="500"
+          data-aos-easing="ease"
+          className="btn"
+          onClick={openDifficultyModal}
+        >
           <span>{difficultySelected}</span>
           <span>Tap here to change game theme</span>
         </button>
 
         <button
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="600"
+          data-aos-easing="ease"
           className={
             gameSelected === "The Lord of the Rings"
               ? "btn btn__primary btn__primary--lotr"

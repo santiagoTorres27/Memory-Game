@@ -3,6 +3,8 @@ import "./Board.scss";
 import Card from "../card/Card";
 import FinishedGameModal from "../finishedGameModal/FinishedGameModal";
 import { cardImagesLotr, cardImagesSw } from "../../../data/Cards";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const Board = ({ theme, difficulty, onBackToHome }) => {
   const [timeOfGame] = useState(60);
@@ -141,6 +143,10 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
     }
   }, [cards]);
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <div>
       {!isTimeRunning && (
@@ -153,10 +159,26 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
         />
       )}
 
-      <div className="game-info">
-        <div className="game-info__tries">{tries}</div>
-        <div className="game-info__timer">{time}</div>
-        <div className="game-info__reset-game">
+      <div data-aos="zoom-in-up" data-aos-duration="600" className="game-info">
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="200"
+          className="game-info__tries"
+        >
+          {tries}
+        </div>
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="300"
+          className="game-info__timer"
+        >
+          {time}
+        </div>
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="200"
+          className="game-info__reset-game"
+        >
           <div className="game-info__reset" onClick={reset}>
             <img src="/img/reset_icon.svg" alt="" />
           </div>
@@ -166,22 +188,24 @@ const Board = ({ theme, difficulty, onBackToHome }) => {
         </div>
       </div>
 
-      <div className={`board ${boardStyle}`}>
-        {cards &&
-          cards.map((card) => (
-            <Card
-              theme={theme}
-              key={card.id}
-              card={card}
-              onSelectCard={selectCard}
-              flipped={
-                card === choices.choice1 ||
-                card === choices.choice2 ||
-                card.matched
-              }
-              disabled={disabled}
-            />
-          ))}
+      <div data-aos="zoom-in-up" data-aos-duration="600">
+        <div className={`board ${boardStyle}`}>
+          {cards &&
+            cards.map((card) => (
+              <Card
+                theme={theme}
+                key={card.id}
+                card={card}
+                onSelectCard={selectCard}
+                flipped={
+                  card === choices.choice1 ||
+                  card === choices.choice2 ||
+                  card.matched
+                }
+                disabled={disabled}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

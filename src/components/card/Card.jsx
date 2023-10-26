@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Card.scss";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const Card = ({ theme, card, onSelectCard, flipped, disabled }) => {
   const handleClick = () => {
@@ -7,6 +9,10 @@ const Card = ({ theme, card, onSelectCard, flipped, disabled }) => {
       onSelectCard(card);
     }
   };
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   return (
     <div className="card">

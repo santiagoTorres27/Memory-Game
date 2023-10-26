@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import Modal from "../modal/Modal";
-import { GameContext } from "../../context/GameContext";
 import "./GameModal.scss";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const GameModal = ({ closeModal, onSelectGameTheme }) => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <Modal onCloseModal={closeModal}>
-      <span>Select the game theme</span>
+      <span data-aos="zoom-in" data-aos-delay="100">
+        Select the game theme
+      </span>
 
-      <div className="buttons">
+      <div className="buttons" data-aos="zoom-in" data-aos-delay="150">
         <button
           onClick={(e) => {
             onSelectGameTheme("The Lord of the Rings");

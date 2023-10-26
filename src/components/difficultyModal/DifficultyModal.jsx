@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "../modal/Modal";
 import "./DifficultyModal.scss";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const DifficultyModal = ({ closeModal, onSelectDifficulty }) => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <Modal onCloseModal={closeModal}>
-      <span>Select the game theme</span>
+      <span data-aos="zoom-in" data-aos-delay="100">
+        Select the game theme
+      </span>
 
-      <div className="buttons-difficulty">
+      <div
+        className="buttons-difficulty"
+        data-aos="zoom-in"
+        data-aos-delay="150"
+      >
         <button
           onClick={(e) => {
             onSelectDifficulty("easy");
