@@ -31,7 +31,7 @@ https://memoryama.netlify.app/
 
 2. Clone this repository to the local machine:
 
-https://github.com/santiagoTorres27/Memory-Game.git
+`git clone https://github.com/santiagoTorres27/Memory-Game.git`
 
 3. Navigate to the project folder:
 
